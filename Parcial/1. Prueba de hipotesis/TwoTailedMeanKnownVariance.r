@@ -8,7 +8,7 @@ weight does not differ from last year?
 #media muestral
 xbar = 14.6
 
-#valor de la hipotesos
+#valor de la hipotesis
 mu0 = 15.4
 
 #sd
