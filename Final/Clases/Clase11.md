@@ -82,3 +82,46 @@ anova1 <- aov(resultado~dietas,misdatos)
 summary(anova1)
 round(coefficients(anova1),2)
 ```
+
+## Diseño de bloques completos aleatorizados (DBCA)
+
+Cada unidad experimental es asignada a bloques según sus características.
+Luego, dentro de cada bloque, cada unidad se asigna aleatoriamente a un grupo para recibir un tratamiento.
+![DBCA](src/dbca.png)
+
+- Se usa cuando conocemos una fuente de variación y es controlable.
+- Formación de bloques sirve para eliminar de manera sistemática el efecto de una fuente de variación conocida y controlable.
+- Mejora la precisión de las comparaciones al eliminar la variabilidad debido a los bloques.
+- Usualmente son bloques:
+  - Los equipos o máquinas utilizadas en el experimento
+  - Las personas del estudio
+  - El tiempo en el que se realiza los experimentos
+
+#### Ejemplo: DBCA
+
+Experimento para compara el tiempo de ejecución de un programa con dos
+metodologías diferentes. Se corren los programas en 3 servidores de
+diferentes características.
+  - Variable de respuesta: **Tiempo de ejecución**
+  - Factor de tratamiento: **Metodología**. Niveles: Met1, Met2
+  - Factor bloques: **Servidores**. Niveles: Servidor1, Servidor2, Servidor3.
+
+Experimento del rendimiento de combustible de cinco tipos de aditivos de
+gasolina. En la prueba se utilizan 5 vehículos.
+  - Variable de respuesta: **Rendimiento del combustible**
+  - Factor de tratamiento: **Aditivos de la gasolina**. Niveles: 1,2,3,4,5
+  - Factor bloques: **Vehículos**. Niveles: 1,2,3,4,5
+
+### ¿El tratamiento influye sobre la respuesta?
+
+- Estamos interesados en si alguno de los tratamientos influye sobre la respuesta
+- Si alguno es significativamente diferente de cero.
+- Se utilizara ANOVA. Con ciertas modificaciones ya que estamos usando un diseño de bloques (DBCA)
+
+### ANOVA en DBCA
+1.
+![ANOVA1](src/ANOVA1.png)
+2.
+![ANOVA2](src/ANOVA2.png)
+3.
+![ANOVA3](src/ANOVA3.png)
