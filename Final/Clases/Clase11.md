@@ -69,13 +69,13 @@ effect_treatment
 ```
 
 Si la dieta A es la dieta por defecto, hallar el efecto de las dietas sobre A
-```
+``` R
 round(coefficients(anova1),2)
 ```
 
 Si ahora la dieta B es la dieta por defecto que se les da a los animales.
 Hallar el efecto de las dietas con respecto a la dieta B
-```
+``` R
 misdatos$dietas <- relevel(misdatos$dietas,ref="B")
 misdatos$dietas
 anova1 <- aov(resultado~dietas,misdatos)
