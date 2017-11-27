@@ -50,6 +50,8 @@ round(coefficients(anova1),2)
  res <- c(13,16,5,22,24,4,18,17,1,39,44,22)
  factor <- c(1,2,3,1,2,3,1,2,3,1,2,3)
  bloque <- c(1,1,1,2,2,2,3,3,3,4,4,4)
+ 
+ midata <- data.frame(factor,bloque,res)
 
  length(res)
  length(factor)
@@ -69,7 +71,6 @@ round(coefficients(anova1),2)
                   leg.legend="Bloque")
 
  #Opt1
- midata <- data.frame(factor,bloque,res)
  anova1 <- aov(res~as.factor(factor)+as.factor(bloque),midata)
  summary(anova1)
 

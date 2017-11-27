@@ -128,3 +128,63 @@ gasolina. En la prueba se utilizan 5 vehículos.
 
 3.
 ![ANOVA3](src/ANOVA3.png)
+
+#### Ejemplo: Bacterias
+
+Se están comparando tres soluciones de lavado a fin de estudiar su
+efectividad para retardar el crecimiento de las bacterias de la leche en 5
+galones. El análisis se hace en un laboratorio y solo pueden realizarse tres
+ensayos en un día. Puesto que los días pueden representar una fuente de
+variación potencial, el experimentador decide usar un DBCA. Se hacen
+observaciones en 4 días y los datos se muestran a continuación.
+
+Datos
+``` R
+res <- c(13,16,5,22,24,4,18,17,1,39,44,22)
+factor <- c(1,2,3,1,2,3,1,2,3,1,2,3)
+bloque <- c(1,1,1,2,2,2,3,3,3,4,4,4)
+
+midata <- data.frame(factor,bloque,res)
+```
+Boxplots
+``` R
+boxplot(res~factor,midata, main="Retardo en el crecimiento de bacterias",
+        ylab="Tiempo (segundos)",
+        xlab="Factor: Soluciones de lavado")
+boxplot(res~bloque,midata, main="Retardo en el crecimiento de bacterias",
+        ylab="Tiempo (segundos)",
+        xlab="Bloques: Días")
+
+interaction.plot(midata$factor,midata$bloque,midata$res,
+                         xlab="Factor: Soluciones de lavado",
+                         ylab="Tiempo (segundos)",
+                         leg.legend="Bloque")
+```
+
+ANOVA
+
+H0: t1=t2=t3=t4=0
+
+``` R
+anova1 <- aov(res~as.factor(factor)+as.factor(bloque),midata)
+summary(anova1)
+```
+
+``` R
+midata <- data.frame(factor=as.factor(factor),bloque=as.factor(bloque),res)
+anova1 <- aov(res~factor+bloque,midata)
+summary(anova1)
+
+# global Effect and Treatment Effect
+mu.est <- mean(midata$res)
+mean_treatment <-  aggregate(res~factor,midata,mean)
+effect_treatment <-  aggregate(res~factor,midata,function(x){mean(x)-mu.est})
+effect_block <-  aggregate(res~bloque,midata,function(x){mean(x)-mu.est})
+mu.est
+effect_treatment
+effect_block
+
+#Effects with control treatment
+round(coefficients(anova1),4)
+
+```
