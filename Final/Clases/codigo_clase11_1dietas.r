@@ -9,7 +9,7 @@ D <- c(56,62,60,61,63,64,63,59)
 #Tabla de resultados
 resultado <- c(A,B,C,D)
 
-  
+
 dietas <- c(rep("A",length(A)),
             rep("B",length(B)),
             rep("C",length(C)),
@@ -54,30 +54,30 @@ round(coefficients(anova1),2)
  length(res)
  length(factor)
  length(bloque)
- 
- boxplot(res~factor,midata, main="Retardo en el crecimiento de bacterias", 
+
+ boxplot(res~factor,midata, main="Retardo en el crecimiento de bacterias",
          ylab="Tiempo (segundos)",
          xlab="Factor: Soluciones de lavado")
- boxplot(res~bloque,midata, main="Retardo en el crecimiento de bacterias", 
+ boxplot(res~bloque,midata, main="Retardo en el crecimiento de bacterias",
          ylab="Tiempo (segundos)",
          xlab="Bloques: Días")
- 
+
  # Interacciones
  interaction.plot(midata$factor,midata$bloque,midata$res,
                   xlab="Factor: Soluciones de lavado",
                   ylab="Tiempo (segundos)",
                   leg.legend="Bloque")
- 
+
  #Opt1
  midata <- data.frame(factor,bloque,res)
  anova1 <- aov(res~as.factor(factor)+as.factor(bloque),midata)
  summary(anova1)
- 
+
  #Opt2
  midata <- data.frame(factor=as.factor(factor),bloque=as.factor(bloque),res)
  anova1 <- aov(res~factor+bloque,midata)
  summary(anova1)
- 
+
  # global Effect and Treatment Effect
  mu.est <- mean(midata$res)
  mean_treatment <-  aggregate(res~factor,midata,mean)
@@ -86,9 +86,6 @@ round(coefficients(anova1),2)
  mu.est
  effect_treatment
  effect_block
- 
+
  #Effects with control treatment
  round(coefficients(anova1),4)
- 
- 
- 

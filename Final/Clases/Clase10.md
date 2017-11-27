@@ -1,6 +1,6 @@
 # Clase 10
 
-## Diseño de experimentos de 1 factor 
+## Diseño de experimentos de 1 factor - parte 1
 
 ### Etapas de la Metodología  para DOE
 
